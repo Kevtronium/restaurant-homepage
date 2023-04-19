@@ -1,7 +1,6 @@
 import burgerImg from './main-burger.jpg';
 
-const homeStyles = ['flex', 'items-center', 'justify-center'];
-const cardStyles = [
+const homeStyles = [
   'border-2',
   'border-solid',
   'border-gray-300',
@@ -13,25 +12,21 @@ const imgStyles = ['rounded-lg'];
 const imgDim = { width: 500, height: 450 };
 
 function createHomeElement() {
-  const home = document.createElement('main');
-  const card = document.createElement('div');
+  const home = document.createElement('div');
   const text = document.createElement('p');
   const img = document.createElement('img');
 
-  card.classList.add(...cardStyles);
+  home.classList.add(...homeStyles);
 
   text.classList.add(...textStyles);
   text.textContent = 'Best Burgers in Town!';
-  card.appendChild(text);
+  home.appendChild(text);
 
   img.width = imgDim.width;
   img.height = imgDim.height;
   img.classList.add(...imgStyles);
   img.src = burgerImg;
-  card.appendChild(img);
-
-  home.appendChild(card);
-  home.classList.add(...homeStyles);
+  home.appendChild(img);
 
   return home;
 }

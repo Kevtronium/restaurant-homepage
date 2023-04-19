@@ -30,7 +30,7 @@ function createNavBar() {
   menuTab.classList.add(...tabStyles.default);
   navBar.appendChild(menuTab);
 
-  contactTab.textContent = 'Menu';
+  contactTab.textContent = 'Contact';
   contactTab.classList.add(...tabStyles.default);
   navBar.appendChild(contactTab);
 
