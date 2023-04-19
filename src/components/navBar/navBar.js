@@ -1,3 +1,6 @@
+import createHomeElement from '../home/home';
+import createContact from '../contact/contact';
+
 const navBarStyles = ['flex', 'gap-2', 'text-lg', 'font-bold'];
 const tabStyles = {
   default: [
@@ -12,8 +15,25 @@ const tabStyles = {
     'hover:bg-gray-300',
     'active:bg-gray-400',
   ],
-  active: ['bg-gray-500'],
+  active: ['bg-gray-500', 'selected'],
 };
+
+function handleTabClick(e) {
+  const mainContent = document.querySelector('main');
+  const oldTab = document.querySelector('.selected');
+  let newContent = null;
+
+  if (e.target.textContent === 'Contact') {
+    newContent = createContact();
+  } else if (e.target.textContent === 'Home') {
+    newContent = createHomeElement();
+  }
+
+  e.target.classList.add(...tabStyles.active);
+  oldTab.classList.remove(...tabStyles.active);
+  mainContent.removeChild(mainContent.firstChild);
+  mainContent.appendChild(newContent);
+}
 
 function createNavBar() {
   const navBar = document.createElement('nav');
@@ -23,7 +43,8 @@ function createNavBar() {
 
   homeTab.textContent = 'Home';
   homeTab.classList.add(...tabStyles.default);
-  homeTab.classList.toggle(...tabStyles.active);
+  homeTab.classList.add(...tabStyles.active);
+  homeTab.addEventListener('click', handleTabClick);
   navBar.appendChild(homeTab);
 
   menuTab.textContent = 'Menu';
@@ -32,6 +53,7 @@ function createNavBar() {
 
   contactTab.textContent = 'Contact';
   contactTab.classList.add(...tabStyles.default);
+  contactTab.addEventListener('click', handleTabClick);
   navBar.appendChild(contactTab);
 
   navBar.classList.add(...navBarStyles);
