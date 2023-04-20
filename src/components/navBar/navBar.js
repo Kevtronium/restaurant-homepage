@@ -1,4 +1,5 @@
 import createHomeElement from '../home/home';
+import createMenu from '../menu/menu';
 import createContact from '../contact/contact';
 
 const navBarStyles = ['flex', 'gap-2', 'text-lg', 'font-bold'];
@@ -25,7 +26,9 @@ function handleTabClick(e) {
 
   if (e.target.textContent === 'Contact') {
     newContent = createContact();
-  } else if (e.target.textContent === 'Home') {
+  } else if (e.target.textContent === 'Menu') {
+    newContent = createMenu();
+  } else {
     newContent = createHomeElement();
   }
 
@@ -49,6 +52,7 @@ function createNavBar() {
 
   menuTab.textContent = 'Menu';
   menuTab.classList.add(...tabStyles.default);
+  menuTab.addEventListener('click', handleTabClick);
   navBar.appendChild(menuTab);
 
   contactTab.textContent = 'Contact';
